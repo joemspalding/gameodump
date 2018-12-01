@@ -18,7 +18,7 @@ namespace Infrastructure.Data
 
         public void AddGames()
         {
-            throw new NotImplementedException();
+            
         }
 
         public IEnumerable<Game> GetGames()

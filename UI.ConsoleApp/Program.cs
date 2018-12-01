@@ -11,6 +11,9 @@ namespace UI.ConsoleApp
         {
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
+            
+            var diConfig= new DIConfig(kernel);
+            kernel = diConfig.GetConfiguredKernel();
 
         }
     }
