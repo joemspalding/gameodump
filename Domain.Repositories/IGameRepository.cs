@@ -5,7 +5,7 @@ namespace Domain.Repositories
 {
     public interface IGameRepository
     {
-        void AddGames();
+        void AddGames(IEnumerable<Game> games);
         IEnumerable<Game> GetGames();
         Game GetGameById(int id);
         Game GetGamesBySystem(GameSystem system);
