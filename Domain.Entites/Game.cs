@@ -10,6 +10,11 @@ namespace Domain.Entites
     {
         public int GameId { get; set; }
         public int SystemId { get; set; }
-        public int Title { get; set; }
+        public string Title { get; set; }
+
+        public override string ToString()
+        {
+            return "{\n\tGameId = " + GameId + ",\n\tSystemId = " + SystemId + ",\n\tTitle = " + Title + "\n}";
+        }
     }
 }

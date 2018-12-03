@@ -6,6 +6,6 @@ namespace Service.Abstract
     public interface IGameTranslator
     {
         // TODO: Figure out what type to pass into parameter.
-        Game TranslateGame(string response);
+        List<Game> TranslateGames(List<string> response);
     }
 }
