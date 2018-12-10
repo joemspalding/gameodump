@@ -18,13 +18,21 @@ namespace Infrastructure.Data.API.Concrete
             web = new HtmlWeb();
             int start = 1, end, interval = SteamSettings.MAXPAGES / 16;
 
-            for (int i = 1; i <= SteamSettings.MAXPAGES; i++)
-            {
-                end = start + interval - 1;
 
-                steamGamesList.AddRange(Task.Run(async () => await PaginateGameGetting(start, end)).Result);
-                start += interval;
-            }
+            Parallel.For(0, SteamSettings.MAXPAGES,
+                index =>
+                {
+                    Console.WriteLine(index);
+                    var doc = web.Load(SteamSettings.URL + index.ToString());
+
+                    List<string> games = doc.DocumentNode
+                        .SelectNodes(SteamSettings.XPATH)
+                        .Select(x => x.OuterHtml)
+                        .ToList();
+
+                    steamGamesList.AddRange(games);
+                });
+
 
             return steamGamesList;
         }

@@ -8,6 +8,6 @@ namespace Domain.Repositories
         void AddGames(IEnumerable<Game> games);
         IEnumerable<Game> GetGames();
         Game GetGameById(int id);
-        Game GetGamesBySystem(GameSystem system);
+        IEnumerable<Game> GetGamesBySystem(GameSystem system);
     }
 }
