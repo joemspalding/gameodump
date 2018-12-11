@@ -16,8 +16,6 @@ namespace Infrastructure.Data.API.Concrete
         {
             List<string> steamGamesList = new List<string>();
             web = new HtmlWeb();
-            int start = 1, end, interval = SteamSettings.MAXPAGES / 16;
-
 
             Parallel.For(0, SteamSettings.MAXPAGES,
                 index =>
@@ -35,25 +33,6 @@ namespace Infrastructure.Data.API.Concrete
 
 
             return steamGamesList;
-        }
-
-        private async Task<List<string>> PaginateGameGetting(int start, int end)
-        {
-            var subGamesList = new List<string>();
-            for (int i = start; i <= end; i++)
-            {
-                Console.WriteLine(i);
-                var doc = await web.LoadFromWebAsync(SteamSettings.URL + i.ToString());
-
-                List<string> games = doc.DocumentNode
-                    .SelectNodes(SteamSettings.XPATH)
-                    .Select(x => x.OuterHtml)
-                    .ToList();
-
-                subGamesList.AddRange(games);
-            }
-
-            return subGamesList;
         }
     }
 }
